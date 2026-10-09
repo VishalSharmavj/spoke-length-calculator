@@ -1,0 +1,154 @@
+/* The calculator's own components: the two side fieldsets, the result cards,
+   the stats strip and the validation list. */
+
+.sides {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	gap: var(--gap);
+	margin-top: var(--gap);
+}
+
+.side {
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	padding: .9rem;
+	margin: 0;
+}
+
+.side legend {
+	font-weight: 600;
+	font-size: .875rem;
+	padding: 0 .4rem;
+}
+
+.side .field + .field { margin-top: .7rem; }
+
+/* Results ------------------------------------------------------------- */
+
+.results { margin-top: 1.5rem; }
+
+.cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: var(--gap);
+}
+
+.card {
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	padding: 1.1rem;
+}
+
+.card.is-empty { opacity: .5; }
+
+.card .length {
+	display: flex;
+	align-items: baseline;
+	gap: .3rem;
+	margin: .2rem 0 .4rem;
+}
+
+.card .length output {
+	font-size: 2.6rem;
+	font-weight: 700;
+	line-height: 1;
+	font-variant-numeric: tabular-nums;
+}
+
+.card .length span { color: var(--ink-soft); font-size: 1rem; }
+
+.card .order {
+	margin: 0 0 .7rem;
+	font-size: .9rem;
+	color: var(--ink-soft);
+}
+
+.card .order b { color: var(--ink); }
+
+.meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .4rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: .8125rem;
+}
+
+.meta li {
+	background: var(--bg);
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	padding: .15rem .6rem;
+}
+
+.meta .tag { border: 0; font-weight: 600; }
+.meta .tag.is-good { background: var(--good-bg); color: var(--good); }
+.meta .tag.is-warn { background: var(--warn-bg); color: var(--warn); }
+.meta .tag.is-bad  { background: var(--bad-bg);  color: var(--bad); }
+
+.same {
+	margin: var(--gap) 0 0;
+	padding: .7rem .9rem;
+	background: var(--good-bg);
+	color: var(--good);
+	border-radius: var(--radius);
+	font-size: .9rem;
+}
+
+.same b { color: inherit; }
+
+/* Stats --------------------------------------------------------------- */
+
+.stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+	gap: var(--gap);
+	margin: var(--gap) 0 0;
+	padding: 1rem;
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+}
+
+.stats dt {
+	font-size: .75rem;
+	text-transform: uppercase;
+	letter-spacing: .05em;
+	color: var(--ink-soft);
+}
+
+.stats dd {
+	margin: .2rem 0 0;
+	font-size: 1.35rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+
+/* Problems ------------------------------------------------------------ */
+
+.problems {
+	margin: 0 0 var(--gap);
+	padding: .8rem .9rem .8rem 2.1rem;
+	background: var(--warn-bg);
+	color: var(--warn);
+	border-radius: var(--radius);
+	font-size: .9rem;
+}
+
+.problems li + li { margin-top: .35rem; }
+
+/* Advisory notes sit below the answer, not in place of it, so they are quieter
+   than .problems. */
+.warnings {
+	margin: var(--gap) 0 0;
+	padding: .8rem .9rem .8rem 2.1rem;
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	font-size: .875rem;
+	color: var(--ink-soft);
+}
+
+.warnings li + li { margin-top: .35rem; }

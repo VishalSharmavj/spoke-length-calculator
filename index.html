@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spoke Length Calculator</title>
+<meta name="description" content="Open-source spoke length calculator. Works out spoke lengths for both sides of a wheel from ERD, hub flange measurements and cross count.">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/calculator.css">
+</head>
+<body>
+
+<main class="wrap">
+
+	<header class="intro">
+		<h1>Spoke Length Calculator</h1>
+		<p>
+			Enter your rim and hub measurements and get the spoke length for each
+			side of the wheel, rounded to a size you can order.
+		</p>
+	</header>
+
+	<form class="panel" id="form" autocomplete="off">
+
+		<section class="group">
+			<h2>Rim</h2>
+			<div class="row">
+				<label class="field">
+					<span>ERD <small>mm</small></span>
+					<input type="number" id="erd" value="602" min="100" max="900" step="0.5">
+				</label>
+				<label class="field">
+					<span>Spoke holes</span>
+					<input type="number" id="holes" value="32" min="4" max="64" step="4">
+				</label>
+				<label class="field">
+					<span>Load a typical rim</span>
+					<select id="rim-preset">
+						<option value="">Choose…</option>
+					</select>
+				</label>
+			</div>
+			<p class="note">
+				ERD is measured to where the spoke ends sit, so it is <em>not</em> the
+				rim's nominal size. <a href="docs/measuring.md">How to measure it →</a>
+			</p>
+		</section>
+
+		<section class="group">
+			<h2>Hub</h2>
+			<div class="row">
+				<label class="field">
+					<span>Load a typical hub</span>
+					<select id="hub-preset">
+						<option value="">Choose…</option>
+					</select>
+				</label>
+				<label class="field">
+					<span>Spoke hole <small>mm</small></span>
+					<input type="number" id="spoke-hole" value="2.6" min="0" max="5" step="0.1">
+				</label>
+			</div>
+
+			<div class="sides">
+				<fieldset class="side">
+					<legend>Left <small>non-drive / disc</small></legend>
+					<label class="field">
+						<span>Flange diameter <small>mm</small></span>
+						<input type="number" id="fd-left" value="45" min="1" max="300" step="0.5">
+					</label>
+					<label class="field">
+						<span>Centre to flange <small>mm</small></span>
+						<input type="number" id="ctf-left" value="37" min="1" max="120" step="0.5">
+					</label>
+					<label class="field">
+						<span>Crosses</span>
+						<select id="x-left">
+							<option value="0">Radial (0)</option>
+							<option value="1">1-cross</option>
+							<option value="2">2-cross</option>
+							<option value="3" selected>3-cross</option>
+							<option value="4">4-cross</option>
+						</select>
+					</label>
+				</fieldset>
+
+				<fieldset class="side">
+					<legend>Right <small>drive side</small></legend>
+					<label class="field">
+						<span>Flange diameter <small>mm</small></span>
+						<input type="number" id="fd-right" value="45" min="1" max="300" step="0.5">
+					</label>
+					<label class="field">
+						<span>Centre to flange <small>mm</small></span>
+						<input type="number" id="ctf-right" value="18" min="1" max="120" step="0.5">
+					</label>
+					<label class="field">
+						<span>Crosses</span>
+						<select id="x-right">
+							<option value="0">Radial (0)</option>
+							<option value="1">1-cross</option>
+							<option value="2">2-cross</option>
+							<option value="3" selected>3-cross</option>
+							<option value="4">4-cross</option>
+						</select>
+					</label>
+				</fieldset>
+			</div>
+		</section>
+
+	</form>
+
+	<section class="results" id="results" aria-live="polite">
+
+		<ul class="problems" id="problems" hidden></ul>
+		<ul class="warnings" id="warnings" hidden></ul>
+
+		<div class="cards">
+			<article class="card" id="card-left">
+				<h3>Left <small>non-drive / disc</small></h3>
+				<p class="length"><output id="len-left">—</output><span>mm</span></p>
+				<p class="order" id="order-left"></p>
+				<ul class="meta" id="meta-left"></ul>
+			</article>
+
+			<article class="card" id="card-right">
+				<h3>Right <small>drive side</small></h3>
+				<p class="length"><output id="len-right">—</output><span>mm</span></p>
+				<p class="order" id="order-right"></p>
+				<ul class="meta" id="meta-right"></ul>
+			</article>
+		</div>
+
+		<p class="same" id="same" hidden></p>
+
+		<dl class="stats">
+			<div><dt>Dish</dt><dd id="stat-dish">—</dd></div>
+			<div><dt>Tension balance</dt><dd id="stat-balance">—</dd></div>
+			<div><dt>Spokes per flange</dt><dd id="stat-per-flange">—</dd></div>
+		</dl>
+		<p class="note" id="balance-note"></p>
+
+	</section>
+
+	<footer class="foot">
+		<p>
+			<strong>This is a simplified build.</strong>
+			It covers a standard wheel: two flanges, evenly spaced holes, no rim
+			offset. For paired-hole hub motors, offset rims, split cross counts,
+			a lock-nut measuring mode and a live cross-section drawing of your
+			wheel, use the full version:
+		</p>
+		<p class="cta">
+			<a href="https://bikeshala.com/tools/spoke-length-calculator/">
+				Spoke Length Calculator on Bikeshala →
+			</a>
+		</p>
+		<p class="src">
+			Source: <a href="https://github.com/VishalSharmavj/spoke-length-calculator">github.com/VishalSharmavj/spoke-length-calculator</a> · MIT
+		</p>
+	</footer>
+
+</main>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

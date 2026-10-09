@@ -1,0 +1,24 @@
+{
+  "name": "spoke-length-calculator",
+  "version": "1.0.0",
+  "description": "A dependency-free spoke length calculator: the wheel-building geometry as readable code, plus a small browser UI.",
+  "type": "module",
+  "main": "js/geometry.js",
+  "exports": {
+    ".": "./js/geometry.js",
+    "./spokes": "./js/spokes.js",
+    "./presets": "./js/presets.js"
+  },
+  "files": ["js", "css", "index.html", "docs"],
+  "scripts": {
+    "test": "node --test test/",
+    "start": "python3 -m http.server 8000"
+  },
+  "keywords": ["bicycle", "wheel-building", "spoke-length", "spoke", "wheelbuilding", "erd", "calculator"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VishalSharmavj/spoke-length-calculator.git"
+  },
+  "homepage": "https://bikeshala.com/tools/spoke-length-calculator/"
+}
